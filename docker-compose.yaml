@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  app:
+    build: ./samantha-ai
+    container_name: samantha-ai_c
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./samantha-ai:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - ./samantha-ai/.env.local
+    stdin_open: true
+    command: npm run dev
+  redis:
+    image: redis:7-alpine
+    container_name: redis_c
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+volumes:
+  redis_data:

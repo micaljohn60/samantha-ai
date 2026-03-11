@@ -1,0 +1,24 @@
+import "./globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+
+export const metadata = {
+  title: "Samantha.ai",
+  description: "Patient & Document Management",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className="bg-gray-300 w-full">
+        <main>{children}</main>
+      </body>
+    </html>
+  );
+}
