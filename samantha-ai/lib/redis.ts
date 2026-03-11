@@ -1,10 +1,6 @@
 import Redis from "ioredis";
 
-const redis = new Redis({
-  host: process.env.NXT_PUBLIC_REDIS_HOST || "redis",
-  port: Number(process.env.NEXT_PUBLIC_REDIS_PORT) || 6379,
-  password: process.env.REDIS_PASSWORD || undefined,
-});
+const redis = new Redis(process.env.NEXT_PUBLIC_REDIS_URL || "redis");
 
 redis.on("connect", () => console.log("Redis connected"));
 redis.on("error", (err) => console.error("Redis error:", err));
