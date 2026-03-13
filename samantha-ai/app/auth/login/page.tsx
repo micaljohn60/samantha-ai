@@ -6,8 +6,8 @@ import Cubes from "@/utils/animaltion/cube";
 import NetworkParticles from "@/utils/animaltion/network_particles";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@samantha.ai");
+  const [password, setPassword] = useState("Admin");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
