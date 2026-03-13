@@ -1,4 +1,4 @@
 *.sh
 *.pem
 *.pub
-ssh-key-githubaction
+github-actions
