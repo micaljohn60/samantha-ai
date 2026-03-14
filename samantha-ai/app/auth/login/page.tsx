@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Cubes from "@/utils/animaltion/cube";
 import NetworkParticles from "@/utils/animaltion/network_particles";
 
 export default function SignIn() {
