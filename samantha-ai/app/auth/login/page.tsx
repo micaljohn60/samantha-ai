@@ -1,8 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
-import Cubes from "@/utils/animaltion/cube";
+import { useEffect, useState } from "react";
 import NetworkParticles from "@/utils/animaltion/network_particles";
 
 export default function SignIn() {
@@ -10,6 +9,10 @@ export default function SignIn() {
   const [password, setPassword] = useState("Admin");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/notify");
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
