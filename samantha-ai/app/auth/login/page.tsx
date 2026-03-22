@@ -30,6 +30,13 @@ export default function SignIn() {
     if (res?.error) {
       setError("Invalid email or password");
     } else {
+      await fetch("/api/notify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ action: "Clicked Button" }),
+      });
       window.location.href = "/";
     }
   };
