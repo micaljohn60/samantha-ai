@@ -12,6 +12,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  PieChart,
+  Pie,
+  Cell,
 } from "recharts";
 
 interface ActivityDay {
@@ -82,6 +85,14 @@ const quickActions = [
     bg: "bg-emerald-50",
     iconColor: "text-emerald-600",
   },
+];
+
+const categoryData = [
+  { name: "Lab Results",    value: 35, color: "#2563eb" },
+  { name: "Referrals",      value: 25, color: "#22d3ee" },
+  { name: "Prescriptions",  value: 20, color: "#8b5cf6" },
+  { name: "Medical Reports",value: 12, color: "#10b981" },
+  { name: "Imaging",        value: 8,  color: "#f59e0b" },
 ];
 
 function CustomTooltip({ active, payload, label }: any) {
@@ -214,6 +225,49 @@ export default function DashboardPage() {
           </div>
         </div>
 
+      </div>
+
+      {/* ── Documents by Category ───────────────────────────────────── */}
+      <div className="mt-5 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <div className="mb-5">
+          <h2 className="text-sm font-semibold text-slate-700">Documents by Category</h2>
+          <p className="text-xs text-gray-400 mt-0.5">Distribution across all document types</p>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center gap-6">
+          <div className="shrink-0">
+            <PieChart width={200} height={200}>
+              <Pie
+                data={categoryData}
+                cx={100}
+                cy={100}
+                innerRadius={55}
+                outerRadius={90}
+                paddingAngle={3}
+                dataKey="value"
+              >
+                {categoryData.map((entry, i) => (
+                  <Cell key={i} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip
+                formatter={(value: number) => [`${value}%`, "Share"]}
+                contentStyle={{ borderRadius: 12, border: "1px solid #f1f5f9", fontSize: 12 }}
+              />
+            </PieChart>
+          </div>
+          <div className="flex-1 w-full space-y-3">
+            {categoryData.map((cat) => (
+              <div key={cat.name} className="flex items-center gap-3">
+                <span className="shrink-0 w-2.5 h-2.5 rounded-full" style={{ background: cat.color }} />
+                <span className="flex-1 text-sm text-slate-600">{cat.name}</span>
+                <div className="w-32 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                  <div className="h-full rounded-full" style={{ width: `${cat.value}%`, background: cat.color }} />
+                </div>
+                <span className="text-xs font-semibold text-slate-500 w-8 text-right">{cat.value}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ── Recent Uploads ───────────────────────────────────────────── */}
